@@ -1,0 +1,13 @@
+sudo systemctl stop start_app_node.service
+roscore
+
+roslaunch hiwonder_controller hiwonder_controller.launch
+
+rostopic pub /hiwonder_controller/cmd_vel geometry_msgs/Twist "linear:
+  x: 0.1
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0"
