@@ -1,5 +1,5 @@
 <launch>
-  <arg name="usb_cam_name" default="usb_cam" />
+  <arg name="usb_cam_name" default="usb_cam_simple" />
 
   <node name="$(arg usb_cam_name)" pkg="usb_cam" type="usb_cam_node" respawn="false" respawn_delay="2" output="screen" >
     <param name="video_device" value="/dev/depth_cam" />  <!--usb摄像头已被映射为/dev/usb_cam(usb camera is mapped as /dev/usb_cam)-->
@@ -16,10 +16,15 @@
 
     <!-- Controll the frame rate-->
     <param name="framerate" value="10" />
+    <!-- Disable unnecessary image transport plugins-->
+    <param name="disable_pub_plugins" value="compressedDepth,theora" />
   </node>
 
-
+  <!-- 
+    This is image_proc node that atutomatically loaded by ROS
+    It is responsible for processing hte raw camera images and generating additional image topics
   <node name="image_proc" pkg="image_proc" type="image_proc" ns="$(arg usb_cam_name)" />
+  -->
 
   <!--
   <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">

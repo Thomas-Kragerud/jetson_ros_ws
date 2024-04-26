@@ -9,6 +9,8 @@ import time
 import yaml
 import numpy as np
 import hiwonder_sdk.misc as misc
+import rospy
+from sensor_msgs.msg import Image
 
 # 颜色检测
 
